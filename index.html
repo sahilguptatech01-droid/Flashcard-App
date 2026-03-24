@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard app</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="form-container">
+          <div>
+               <h2>Start your Learning</h2>
+          </div>
+           <div>
+             <label for="subject">Choose a subject;</label>
+             <select name="subject" id="subject" onchange="getValue()">
+                <option value="science" id="sub1">Science</option>
+                <option value="math" id="sub2">Math</option>
+                <option value="gk" id="sub3">General Knowledge</option>
+             </select>
+           </div>
+
+             <div>
+                <label for="question">Number oF Questiom;</label>
+                <input type="number" id="question"  name="question" max="10" min="2">
+             </div>
+             <div>
+                <button onclick="start()">Start</button>
+             </div>
+           </div>
+        </div>
+    </div>
+    
+</body>
+<script src="script.js"></script>
+</html>
