@@ -1,22 +1,6 @@
 //! get dropdown value
 
-
-const inpEl=document.getElementById('question');
-const subject=document.getElementById('subject');
-
-
-function getValue(){   
-    localStorage.setItem('subject',subject.value);
-}
-
-function start(){   
-    localStorage.setItem('Number of question',inpEl.value)
-    window.location = 'main.html';
-    
-}
-
-
-const questions = [
+ const questions = [
   // Science (id: 1)
   { id: 1, subject: "science", question: "How many legs does an insect have?", answer: "6" },
   { id: 1, subject: "science", question: "How many planets are in the solar system?", answer: "8" },
@@ -53,39 +37,59 @@ const questions = [
   { id: 3, subject: "gk", question: "How many ears does a human have?", answer: "2" },
   { id: 3, subject: "gk", question: "How many noses does a human have?", answer: "1" }
 ];
+const inpEl=document.getElementById('question');
+const subject=document.getElementById('subject');
+
+
+function getValue(){   
+    localStorage.setItem('subject',subject.value);
+}
+
+function start(){   
+    localStorage.setItem('Number of question',inpEl.value)
+    window.location = 'main.html';
+    
+}
+
 
 question = questions.filter(num => num.subject === localStorage.getItem('subject'))
 
+
 const button = document.getElementById('button2');
+button.innerHTML='Next';
 
+const h5 = document.getElementById('q1');  
+h5.innerHTML=question[0].question;
 
+inputAns=document.getElementById('answer')
 
-let arr=[]
+// on click => store user answer and change question 
+
+let score=0;
 let index=0;
-let finished=false
 function change(){
-    const inputAns=document.getElementById('answer')
+const userAnswer=inputAns.value;
+const correctAnswer=question[index].answer;
+if(userAnswer===correctAnswer){
+    score++;
+    
 
-    const h5 = document.getElementById('q1');
-    button.innerHTML= "Next";
-    if(index < question.length){
-        h5.innerHTML=question[index].question;
-        index++;
+}
+inputAns.value="";
+index++;
 
+if(index<localStorage.getItem('Number of question')){
+    h5.innerHTML=question[index].question;
 
-        
-    }
-    if (finished){
-        window.location='result.html'
-        return
-    }
-    if(index === question.length){
-        button.innerHTML='Completed'
-        finished=true;
-        button.style.backgroundColor='green';
-        button.style.color='white'
-    }
- 
+}else{
+    localStorage.setItem('score',score)
+    console.log(score);
+    window.location='result.html'
+    
+}
 }   
+
+
+
 
 
