@@ -96,4 +96,30 @@ h5{
     margin: 5px;
     font-weight: 600;
 
+
+}
+
+
+/* Result page */
+
+
+.result-container{
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:white;
+    border-radius: 8px;
+    width: 400px;
+    height: 200px;
+    border-radius: 8px;
+}
+
+h1{
+    color:Black;
+    margin: 10px;
+}
+
+h3{
+    color: black;
+    margin: 4px;
 }

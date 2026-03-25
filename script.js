@@ -37,57 +37,100 @@
   { id: 3, subject: "gk", question: "How many ears does a human have?", answer: "2" },
   { id: 3, subject: "gk", question: "How many noses does a human have?", answer: "1" }
 ];
-const inpEl=document.getElementById('question');
-const subject=document.getElementById('subject');
 
 
-function getValue(){   
-    localStorage.setItem('subject',subject.value);
-}
+const noQuestion=document.getElementById('question');  //Getting the input  no of question. 
+const subject=document.getElementById('subject'); //Getting the input subject.
+
+
 
 function start(){   
-    localStorage.setItem('Number of question',inpEl.value)
-    window.location = 'main.html';
-    
+    localStorage.setItem('subject',subject.value);
+    if(noQuestion.value<0||noQuestion.value>10){
+       alert("Please enter a number between 0 and 10")
+       noQuestion.value="";
+       return
+    }
+    localStorage.setItem('Number of question',noQuestion.value)
+    window.location = 'main.html';   
 }
 
 
-question = questions.filter(num => num.subject === localStorage.getItem('subject'))
+question = questions.filter(num => num.subject === localStorage.getItem('subject'));
+
 
 
 const button = document.getElementById('button2');
-button.innerHTML='Next';
-
 const h5 = document.getElementById('q1');  
-h5.innerHTML=question[0].question;
+const nextBtn=document.getElementById('nextBtn');
+const answer=document.getElementById('answer');
 
-inputAns=document.getElementById('answer')
 
-// on click => store user answer and change question 
+
 
 let score=0;
 let index=0;
-function change(){
-const userAnswer=inputAns.value;
-const correctAnswer=question[index].answer;
-if(userAnswer===correctAnswer){
-    score++;
-    
-
-}
-inputAns.value="";
-index++;
-
-if(index<localStorage.getItem('Number of question')){
+function startquiz(){
+    let start=document.getElementById('startBtn');
     h5.innerHTML=question[index].question;
+    start.style.display='none'
+    nextBtn.style.display="inline-block";
 
-}else{
-    localStorage.setItem('score',score)
-    console.log(score);
-    window.location='result.html'
-    
+
 }
-}   
+
+function submit(){
+    let userAnswer=document.getElementById('answer');
+    let correctAnswer=question[index].answer;
+    console.log(userAnswer);
+    
+    if(userAnswer.value === correctAnswer){
+        score++;
+        userAnswer.value='';
+
+    }
+}
+function next(){
+    submit()
+    index++;
+    if(index<localStorage.getItem('Number of question')){
+        h5.innerHTML=question[index].question;
+        answer.value=""
+    }else{
+        localStorage.setItem('quizScore',score);
+        window.location='result.html'
+    }
+}
+
+window.onload=function(){
+    let score=localStorage.getItem('quizScore');
+    let total=localStorage.getItem('Number of question');
+    let quizScore= document.getElementById('score');
+    quizScore.innerHTML="Score:"+score+"/"+total
+    localStorage.removeItem('quizScore')
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
