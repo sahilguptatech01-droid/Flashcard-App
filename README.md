@@ -12,10 +12,12 @@ After completing all flashcards, display the final score based on correct respon
 - Allow topic selection and question count input  
 
 - Track user answers and calculate score  
-- Display results after completion  
-- Ensure responsive layout  
+- Display results after completion
+- Ensure responsive layout 
+live: https://flashnora.netlify.app/
 
 The UI should resemble an interactive learning interface.  
 
 ## UI Note
 You are expected to design the interface independently while meeting all functional requirements.
+
